@@ -23,6 +23,12 @@ class BurpExtender(IBurpExtender, IContextMenuFactory):
 
 	def createMenuItems(self, invocation):
 		self.context = invocation
+		inv_context = invocation.getInvocationContext()
+
+
+		if inv_context == 7:
+			#not a valid menu
+		    return
 		menuList = ArrayList()
 		menuItem = JMenuItem("Get Depth Instance", actionPerformed=self.getDepthInstance)
 		menuList.add(menuItem)
@@ -42,8 +48,8 @@ class BurpExtender(IBurpExtender, IContextMenuFactory):
 				print 'host not resolved'
 			protocol = httpService.getProtocol()
 			port = httpService.getPort()
-		except UnicodeCodeError:
-			print 'get service error'
+		except:
+			print 'Could not get service details'
 		instance = ip + ' / ' + ' ' + host + ' : ' + 'tcp/udp' + '/' + str(port) + '/' + protocol
 		s = StringSelection(instance)
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(s, s)
