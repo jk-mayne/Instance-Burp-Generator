@@ -50,7 +50,7 @@ class BurpExtender(IBurpExtender, IContextMenuFactory):
 			port = httpService.getPort()
 		except:
 			print 'Could not get service details'
-		instance = ip + ' / ' + ' ' + host + ' : ' + 'tcp/udp' + '/' + str(port) + '/' + protocol
+		instance = ip + ' / ' + ' ' + host + ': ' + 'tcp' + '/' + str(port) + '/' + protocol
 		s = StringSelection(instance)
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(s, s)
 		print instance
